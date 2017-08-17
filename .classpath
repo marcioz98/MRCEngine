@@ -4,72 +4,82 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="lib/AppleJavaExtensions.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/asm-debug-all.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/jinput.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/laf-plugin-7.2.1.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/laf-widget-7.2.1.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/log4j-api-2.0-beta9.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/lwjgl_test.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/lwjgl_util_applet.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/lwjgl_util.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/lwjgl-debug.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/lzma.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/substance-7.2.1.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/trident-7.2.1.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/linux"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/ibxm.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/slick.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MRCEngine/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>

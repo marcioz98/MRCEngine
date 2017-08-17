@@ -9,9 +9,9 @@ import org.lwjgl.opengl.PixelFormat;
 
 public class DisplayManager {
 	
-	public static final int WIDTH = 1280;
-	public static final int HEIGHT = 720;
-	public static final int FPS = 5;
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 800;
+	public static final int FPS = 2048;
 	
 	public static void createDisplay() {
 		
@@ -21,7 +21,6 @@ public class DisplayManager {
 		
 		try {
 			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
-			Display.setResizable(true);
 			Display.create(new PixelFormat(), attribs);
 			Display.setTitle("MRCEngine");
 		} catch (LWJGLException e) {
