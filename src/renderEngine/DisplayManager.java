@@ -24,7 +24,6 @@ public class DisplayManager {
 			Display.create(new PixelFormat(), attribs);
 			Display.setTitle("MRCEngine");
 		} catch (LWJGLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -39,6 +38,18 @@ public class DisplayManager {
 	
 	public static void closeDisplay() {
 		Display.destroy();
+	}
+
+	public static int getWidth() {
+		return WIDTH;
+	}
+
+	public static int getHeight() {
+		return HEIGHT;
+	}
+
+	public static int getFps() {
+		return FPS;
 	}
 
 }
