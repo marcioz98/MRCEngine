@@ -1,6 +1,6 @@
 # Blender v2.78 (sub 0) OBJ File: ''
 # www.blender.org
-mtllib cube.mtl
+mtllib player.mtl
 o Sphere
 v -0.062249 0.548653 -0.831141
 v 0.075700 0.397116 -0.693192

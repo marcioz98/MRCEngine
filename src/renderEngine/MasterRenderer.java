@@ -21,7 +21,11 @@ public class MasterRenderer {
 	
 	private static final float FOV = 90;
 	private static final float NEAR_PLANE = 0.1f;
-	private static final float FAR_PLANE = 20000; // 20000 for GameOfLifeTest
+	private static final float FAR_PLANE = 10000; // 20000 for GameOfLifeTest
+	
+	private static final float SKY_RED = 0.2f;
+	private static final float SKY_GREEN = 0.2f;
+	private static final float SKY_BLUE = 0.2f;
 
 	private StaticShader shader = new StaticShader();
 	private EntityRenderer renderer;
@@ -46,6 +50,7 @@ public class MasterRenderer {
 		prepare();
 		
 		shader.start();
+		shader.loadSkyColour(SKY_RED, SKY_GREEN, SKY_BLUE);
 		shader.loadLight(light);
 		shader.loadViewMatrix(camera);
 		renderer.render(entities);
@@ -53,6 +58,7 @@ public class MasterRenderer {
 		
 		terrainShader.start();
 		terrainShader.loadLight(light);
+		terrainShader.loadSkyColour(SKY_RED, SKY_GREEN, SKY_BLUE);
 		terrainShader.loadViewMatrix(camera);
 		terrainRenderer.render(terrains);
 		terrainShader.stop();
@@ -85,7 +91,8 @@ public class MasterRenderer {
 	public void prepare() {
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-		GL11.glClearColor(0.2f, 0.2f, 0.2f, 1);
+		GL11.glClearColor(SKY_RED, SKY_GREEN, SKY_BLUE, 1);
+		
 	}
 	
 	

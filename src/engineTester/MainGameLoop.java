@@ -28,35 +28,36 @@ public class MainGameLoop {
 		
 		Loader loader = new Loader();
 		
-		ModelData sample = OBJFileLoader.loadOBJ("cube");
+		ModelData sample = OBJFileLoader.loadOBJ("triforce");
 		RawModel sampleModel = loader.loadToVAO(sample.getVertices(), sample.getTextureCoords(), sample.getNormals(), sample.getIndices());
-		ModelTexture texture = new ModelTexture(loader.loadTexture("face"));
+		ModelTexture texture = new ModelTexture(loader.loadTexture("yellow"));
 		texture.setShineDamper(25);
 		texture.setReflectivity(0.8f);
 		TexturedModel texturedModel = new TexturedModel(sampleModel, texture);
 		
 		ArrayList<Entity> entities = new ArrayList<Entity>();
 		
-		
-		float distance = 100f;
+		/*
+		float distance = 10f;
 		for(int i = 1; i < 30; i++) {
 			for(int j = 1; j < 30; j++) {
-					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, Maths.randFloat(0.0f, 360.0f), 0, 25));
+					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, Maths.randFloat(0.0f, 360.0f), 0, 2.5f));
 			}
 		}
+		*/
 		
-		entities.add(new Entity(texturedModel, new Vector3f(1500, 150, 1500), 0, Maths.randFloat(0.0f, 360.0f), 0, 250));
+		entities.add(new Entity(texturedModel, new Vector3f(150, 0, 150), 0, Maths.randFloat(0.0f, 360.0f), 0, 2.5f));
 		
-		Light light = new Light(new Vector3f(1500, 2000, 1500), new Vector3f(1f, 1f, 1f)); // x, intensity, "y"
+		Light light = new Light(new Vector3f(200, 100, 200), new Vector3f(1f, 1f, 1f)); // x, intensity, "y"
 		
 		Camera camera = new Camera();
 		
 		List<Terrain> terrains = new ArrayList<Terrain>();
 		
-		ModelTexture terrainTexture = new ModelTexture(loader.loadTexture("green"));
+		ModelTexture terrainTexture = new ModelTexture(loader.loadTexture("terrain"));
 		
-		for(int i = 0; i < 3; i++) {
-			for(int j = 0; j < 3; j++) {
+		for(int i = 0; i < 1; i++) {
+			for(int j = 0; j < 1; j++) {
 				terrains.add(new Terrain(i, j, loader, terrainTexture));
 			}
 		}
