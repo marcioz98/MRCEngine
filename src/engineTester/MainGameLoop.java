@@ -1,6 +1,7 @@
 package engineTester;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector3f;
@@ -15,8 +16,7 @@ import objConverter.OBJFileLoader;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
 import renderEngine.MasterRenderer;
-import renderEngine.Renderer;
-import shaders.StaticShader;
+import terrains.Terrain;
 import textures.ModelTexture;
 import toolbox.Maths;
 
@@ -31,30 +31,45 @@ public class MainGameLoop {
 		ModelData sample = OBJFileLoader.loadOBJ("yasuo");
 		RawModel sampleModel = loader.loadToVAO(sample.getVertices(), sample.getTextureCoords(), sample.getNormals(), sample.getIndices());
 		ModelTexture texture = new ModelTexture(loader.loadTexture("yasuo"));
-		/*texture.setShineDamper(25);
-		texture.setReflectivity(0.2f);*/
+		texture.setShineDamper(25);
+		texture.setReflectivity(0.6f);
 		TexturedModel texturedModel = new TexturedModel(sampleModel, texture);
 		
 		ArrayList<Entity> entities = new ArrayList<Entity>();
 		
 		
-		float distance = 75f;
-		for(int i = 0; i < 25; i++) {
-			for(int j = 0; j < 25; j++) {
-					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, 0, 0, 1));
+		float distance = 100f;
+		for(int i = 1; i < 30; i++) {
+			for(int j = 1; j < 30; j++) {
+					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, Maths.randFloat(0.0f, 360.0f), 0, 1));
 			}
 		}
 		
 		// Entity entity = new Entity(texturedModel, new Vector3f(0, 0, 0), 0, 0, 0, 1f);
 		
-		Light light = new Light(new Vector3f(-60f, 100f, 70f), new Vector3f(1.3f, 1.3f, 1.3f));
+		Light light = new Light(new Vector3f(1500, 1000, 1500), new Vector3f(1f, 1f, 1f)); // x, intensity, "y"
 		
 		Camera camera = new Camera();
+		
+		List<Terrain> terrains = new ArrayList<Terrain>();
+		
+		ModelTexture terrainTexture = new ModelTexture(loader.loadTexture("face"));
+		
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				terrains.add(new Terrain(i, j, loader, terrainTexture));
+			}
+		}
+		
 		
 		MasterRenderer renderer = new MasterRenderer();
 		while(!Display.isCloseRequested()) {
 			
 			camera.move();
+			
+			for(Terrain terrain : terrains) {
+				renderer.processTerrain(terrain);
+			}
 			
 			for(Entity entity : entities) {
 				renderer.processEntity(entity);

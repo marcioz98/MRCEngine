@@ -26,35 +26,35 @@ public class Camera {
 		
 		// Directing camera
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			position.z-=2f;
+			position.z-=20f;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			position.x-=2f;
+			position.x-=20f;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			position.x+=2f;
+			position.x+=20f;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_S )) {
-			position.z+=2f;
+			position.z+=20f;
 		}
 		
 		// DWheel functionality
 		if(DWheelCurrentValue > 0) {
 			if(DWheelCurrentValue == 120) {
-				position.z-=3f;
+				position.z-=60f;
 			} else if(DWheelCurrentValue == 240) {
-				position.z-=6f;
+				position.z-=120f;
 			} else if(DWheelCurrentValue == 360) {
-				position.z-=9f;
+				position.z-=180f;
 			}
 		}
 		if(DWheelCurrentValue < 0) {
 			if(DWheelCurrentValue == -120) {
-				position.z+=3f;
+				position.z+=60f;
 			} else if(DWheelCurrentValue == -240) {
-				position.z+=6f;
+				position.z+=120f;
 			} else if(DWheelCurrentValue == -360) {
-				position.z+=9f;
+				position.z+=180f;
 			}
 		}
 		
@@ -83,10 +83,10 @@ public class Camera {
 		
 		// Moving camera up and down of Y axis
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-			position.y+=2f;
+			position.y+=20f;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_Z)) {
-			position.y-=2f;
+			position.y-=20f;
 		}
 	}
 
