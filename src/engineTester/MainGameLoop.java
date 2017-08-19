@@ -31,19 +31,17 @@ public class MainGameLoop {
 		ModelData sample = OBJFileLoader.loadOBJ("yasuo");
 		RawModel sampleModel = loader.loadToVAO(sample.getVertices(), sample.getTextureCoords(), sample.getNormals(), sample.getIndices());
 		ModelTexture texture = new ModelTexture(loader.loadTexture("yasuo"));
-		texture.setShineDamper(25);
-		texture.setReflectivity(1);
+		/*texture.setShineDamper(25);
+		texture.setReflectivity(0.2f);*/
 		TexturedModel texturedModel = new TexturedModel(sampleModel, texture);
 		
 		ArrayList<Entity> entities = new ArrayList<Entity>();
 		
 		
-		float distance = 125f;
-		for(int i = 0; i < 20; i++) {
-			for(int j = 0; j < 20; j++) {
-				for(int k = 0; k < 20; k++) {
-					entities.add(new Entity(texturedModel, new Vector3f(i*distance, j*distance, k*distance), 0, 0, 0, 1));
-				}
+		float distance = 75f;
+		for(int i = 0; i < 25; i++) {
+			for(int j = 0; j < 25; j++) {
+					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, 0, 0, 1));
 			}
 		}
 		
