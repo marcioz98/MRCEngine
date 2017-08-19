@@ -3,6 +3,7 @@ package engineTester;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -21,6 +22,9 @@ import textures.ModelTexture;
 import toolbox.Maths;
 
 public class GameOfLifeTest {
+	
+	private static final int BOARD_WIDTH = 512;
+	private static final int BOARD_HEIGHT = 512;
 
 	public static void main(String[] args) {
 		
@@ -29,24 +33,24 @@ public class GameOfLifeTest {
 		
 		Loader loader = new Loader();
 		
-		ModelData sample = OBJFileLoader.loadOBJ("cube");
+		ModelData sample = OBJFileLoader.loadOBJ("cat");
 		RawModel sampleModel = loader.loadToVAO(sample.getVertices(), sample.getTextureCoords(), sample.getNormals(), sample.getIndices());
-		ModelTexture texture = new ModelTexture(loader.loadTexture("green"));
+		ModelTexture texture = new ModelTexture(loader.loadTexture("cat"));
 		texture.setShineDamper(25);
 		texture.setReflectivity(0.8f);
 		TexturedModel texturedModel = new TexturedModel(sampleModel, texture);
 		
 		ArrayList<Entity> entities = new ArrayList<Entity>();
 		
-		int[][] matrix = new int[133][80];
+		int[][] matrix = new int[BOARD_WIDTH][BOARD_HEIGHT];
 		
 		
 		//Table initialization
-		float distance = 75f;
-		for(int i = 1; i < 133; i++) {
-			for(int j = 1; j < 80; j++) {
+		float distance = 7.5f;
+		for(int i = 1; i < BOARD_WIDTH; i++) {
+			for(int j = 1; j < BOARD_HEIGHT; j++) {
 				if((int) (Math.random() * 2) > 0.2) {
-					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, Maths.randFloat(0.0f, 360.0f), 0, 25));
+					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, Maths.randFloat(0.0f, 360.0f), 0, 2.5f));
 					matrix[i][j] = 1;
 				} else {
 					matrix[i][j] = 0;
@@ -56,7 +60,7 @@ public class GameOfLifeTest {
 		
 		// entities.add(new Entity(texturedModel, new Vector3f(1500, 150, 1500), 0, Maths.randFloat(0.0f, 360.0f), 0, 250));
 		
-		Light light = new Light(new Vector3f(5000, 2000, 3000), new Vector3f(1f, 1f, 1f)); // x, intensity, "y"
+		Light light = new Light(new Vector3f(500, 200, 300), new Vector3f(1f, 1f, 1f)); // x, intensity, "y"
 		
 		Camera camera = new Camera();
 		
@@ -78,6 +82,7 @@ public class GameOfLifeTest {
 			
 			camera.move();
 			
+			shuffleMatrix(matrix);
 			matrix = parseMatrix(matrix);
 			entities = updateRender(matrix, entities, texturedModel);
 			
@@ -103,7 +108,7 @@ public class GameOfLifeTest {
 	
 	private static int[][] parseMatrix(int[][] matrix){
 		
-		int[][] tempMatrix = new int[133][80];
+		int[][] tempMatrix = new int[BOARD_WIDTH][BOARD_HEIGHT];
 		for(int i = 0; i < tempMatrix.length; i++)
 		    tempMatrix[i] = matrix[i].clone();
 		
@@ -157,13 +162,25 @@ public class GameOfLifeTest {
 		return matrix;
 	}
 	
+	private static void shuffleMatrix(int[][] matrix){
+		if(Keyboard.isKeyDown(Keyboard.KEY_X)) {
+			for(int x = 0; x < BOARD_WIDTH; x++) {
+				for(int y = 0; y < BOARD_HEIGHT; y++) {
+					if((int) (Math.random() * 2) > 0.2 && matrix[x][y] == 0) {
+						matrix[x][y] = 1;
+					}
+				}
+			}
+		}
+	}
+	
 	private static ArrayList<Entity> updateRender(int[][] matrix, ArrayList<Entity> entities, TexturedModel texturedModel) {
 		entities.clear();
-		float distance = 75f;
-		for(int i = 1; i < 133; i++) {
-			for(int j = 1; j < 80; j++) {
+		float distance = 7.5f;
+		for(int i = 1; i < BOARD_WIDTH; i++) {
+			for(int j = 1; j < BOARD_HEIGHT; j++) {
 				if(matrix[i][j] == 1) {
-					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, Maths.randFloat(0.0f, 360.0f), 0, 25));
+					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, Maths.randFloat(0.0f, 360.0f), 0, 2.5f));
 				}
 			}
 		}
