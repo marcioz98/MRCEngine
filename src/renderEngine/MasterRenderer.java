@@ -21,7 +21,7 @@ public class MasterRenderer {
 	
 	private static final float FOV = 90;
 	private static final float NEAR_PLANE = 0.1f;
-	private static final float FAR_PLANE = 8000;
+	private static final float FAR_PLANE = 20000; // 20000 for GameOfLifeTest
 
 	private StaticShader shader = new StaticShader();
 	private EntityRenderer renderer;

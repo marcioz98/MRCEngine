@@ -45,7 +45,7 @@ public class MainGameLoop {
 			}
 		}
 		
-		entities.add(new Entity(texturedModel, new Vector3f(1500, 0, 1500), 0, Maths.randFloat(0.0f, 360.0f), 0, 250));
+		entities.add(new Entity(texturedModel, new Vector3f(1500, 150, 1500), 0, Maths.randFloat(0.0f, 360.0f), 0, 250));
 		
 		Light light = new Light(new Vector3f(1500, 2000, 1500), new Vector3f(1f, 1f, 1f)); // x, intensity, "y"
 		
