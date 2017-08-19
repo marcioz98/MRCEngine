@@ -26,16 +26,16 @@ public class Camera {
 		
 		// Directing camera
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
-			position.z-=0.02f;
+			position.z-=2f;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
-			position.x-=0.02f;
+			position.x-=2f;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
-			position.x+=0.02f;
+			position.x+=2f;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_S )) {
-			position.z+=0.02f;
+			position.z+=2f;
 		}
 		
 		// DWheel functionality
@@ -71,19 +71,22 @@ public class Camera {
 		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
 			yaw+=1f;
 		}
+		
+		/*
 		if(DXMouseCurrentValue != 0) {
 			yaw-=DXMouseCurrentValue * MOUSE_SENSIBILITY * FAKE_DELTA_TIME;
 		}
 		if(DYMouseCurrentValue != 0) {
 			pitch-=DYMouseCurrentValue * MOUSE_SENSIBILITY * FAKE_DELTA_TIME;
 		}
+		*/
 		
 		// Moving camera up and down of Y axis
 		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-			position.y+=0.02f;
+			position.y+=2f;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_Z)) {
-			position.y-=0.02f;
+			position.y-=2f;
 		}
 	}
 

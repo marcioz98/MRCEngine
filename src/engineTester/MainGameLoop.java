@@ -7,12 +7,14 @@ import org.lwjgl.util.vector.Vector3f;
 
 import entities.Camera;
 import entities.Entity;
+import entities.Light;
 import models.RawModel;
 import models.TexturedModel;
 import objConverter.ModelData;
 import objConverter.OBJFileLoader;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
+import renderEngine.MasterRenderer;
 import renderEngine.Renderer;
 import shaders.StaticShader;
 import textures.ModelTexture;
@@ -25,41 +27,47 @@ public class MainGameLoop {
 		DisplayManager.createDisplay();
 		
 		Loader loader = new Loader();
-		StaticShader shader = new StaticShader();
-		Renderer renderer = new Renderer(shader);
 		
-		ModelData dragon = OBJFileLoader.loadOBJ("yasuo");
-		RawModel dragonModel = loader.loadToVAO(dragon.getVertices(), dragon.getTextureCoords(), dragon.getIndices());
+		ModelData sample = OBJFileLoader.loadOBJ("yasuo");
+		RawModel sampleModel = loader.loadToVAO(sample.getVertices(), sample.getTextureCoords(), sample.getNormals(), sample.getIndices());
 		ModelTexture texture = new ModelTexture(loader.loadTexture("yasuo"));
-		TexturedModel texturedModel = new TexturedModel(dragonModel, texture);
+		texture.setShineDamper(25);
+		texture.setReflectivity(1);
+		TexturedModel texturedModel = new TexturedModel(sampleModel, texture);
 		
-		ArrayList<Entity> entityList = new ArrayList<Entity>();
-		for(int i = 0; i < 200; i++) {
-			entityList.add(new Entity(texturedModel, new Vector3f((float) Maths.randFloat(-30f, 30f),
-																  (float) Maths.randFloat(-30f, 30f),
-																  (float) Maths.randFloat(-100f, -70f)), 
-					(float) Maths.randFloat(-20f, 20f), (float) Maths.randFloat(-20f, 20f), (float) Maths.randFloat(-5f, 5f), 0.05f));
+		ArrayList<Entity> entities = new ArrayList<Entity>();
+		
+		
+		float distance = 125f;
+		for(int i = 0; i < 20; i++) {
+			for(int j = 0; j < 20; j++) {
+				for(int k = 0; k < 20; k++) {
+					entities.add(new Entity(texturedModel, new Vector3f(i*distance, j*distance, k*distance), 0, 0, 0, 1));
+				}
+			}
 		}
+		
+		// Entity entity = new Entity(texturedModel, new Vector3f(0, 0, 0), 0, 0, 0, 1f);
+		
+		Light light = new Light(new Vector3f(-60f, 100f, 70f), new Vector3f(1.3f, 1.3f, 1.3f));
 		
 		Camera camera = new Camera();
 		
+		MasterRenderer renderer = new MasterRenderer();
 		while(!Display.isCloseRequested()) {
-			// entity.moveEntity(0.0f, 0.0f, -0.01f);
-			camera.move();
-			renderer.prepare();
-			shader.start();
-			shader.loadViewMatrix(camera);
-			for(Entity entity : entityList) {
-				entity.rotateEntity((float) Maths.randFloat(0, 10f), (float) Maths.randFloat(0, 10f), (float) Maths.randFloat(0, 10f));
-				renderer.render(entity, shader);
-			}
-			shader.stop();
 			
+			camera.move();
+			
+			for(Entity entity : entities) {
+				renderer.processEntity(entity);
+			}
+			
+			renderer.render(light, camera);
 			DisplayManager.updateDisplay();
 
 		}
-		
-		shader.cleanUp();
+	
+		renderer.cleanUp();
 		loader.cleanUp();
 		DisplayManager.closeDisplay();
 
