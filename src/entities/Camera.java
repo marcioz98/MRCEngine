@@ -60,16 +60,16 @@ public class Camera {
 		
 		// Camera pitch and yaw
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-			pitch-=0.5f;
+			pitch-=1f;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-			pitch+=0.5f;
+			pitch+=1f;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-			yaw-=0.5f;
+			yaw-=1f;
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-			yaw+=0.5f;
+			yaw+=1f;
 		}
 		if(DXMouseCurrentValue != 0) {
 			yaw+=DXMouseCurrentValue * MOUSE_SENSIBILITY * FAKE_DELTA_TIME;

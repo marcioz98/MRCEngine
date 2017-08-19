@@ -7,6 +7,8 @@ import entities.Camera;
 import entities.Entity;
 import models.RawModel;
 import models.TexturedModel;
+import objConverter.ModelData;
+import objConverter.OBJFileLoader;
 import renderEngine.DisplayManager;
 import renderEngine.Loader;
 import renderEngine.Renderer;
@@ -102,9 +104,15 @@ public class MainGameLoop {
 
 		};
 		
+		
 		RawModel exampleModel = loader.loadToVAO(vertices, textureCoords, indices);
 		ModelTexture texture = new ModelTexture(loader.loadTexture("face"));
 		TexturedModel texturedModel = new TexturedModel(exampleModel, texture);
+		
+		/*ModelData dragon = OBJFileLoader.loadOBJ("dragon");
+		RawModel dragonModel = loader.loadToVAO(dragon.getVertices(), dragon.getTextureCoords(), dragon.getIndices());
+		ModelTexture texture = new ModelTexture(loader.loadTexture("face"));
+		TexturedModel texturedModel = new TexturedModel(dragonModel, texture);*/
 		
 		Entity entity = new Entity(texturedModel, new Vector3f(0, 0, -2.5f), 0, 0, 0, 1);
 		
