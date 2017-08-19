@@ -1,5 +1,7 @@
 package toolbox;
 
+import java.util.Random;
+
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -27,6 +29,18 @@ public class Maths {
 		Vector3f negativeCameraPos = new Vector3f(-cameraPos.x, -cameraPos.y, -cameraPos.z);
 		Matrix4f.translate(negativeCameraPos, viewMatrix, viewMatrix);
 		return viewMatrix;
+	}
+	
+	public static float randFloat(float f, float g) {
+
+	    // Usually this can be a field rather than a method variable
+	    Random rand = new Random();
+
+	    // nextInt is normally exclusive of the top value,
+	    // so add 1 to make it inclusive
+	    float randomNum = rand.nextFloat() * (f - g) + g;
+
+	    return randomNum;
 	}
 
 }

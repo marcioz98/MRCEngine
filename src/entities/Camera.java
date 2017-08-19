@@ -8,7 +8,7 @@ import renderEngine.DisplayManager;
 
 public class Camera {
 	
-	private static final float MOUSE_SENSIBILITY = 0.5f;
+	private static final float MOUSE_SENSIBILITY = 3f;
 	private static final float FAKE_DELTA_TIME = (float) DisplayManager.getFps() / 1000;
 	
 	private Vector3f position = new Vector3f(0, 0, 0);
@@ -41,20 +41,20 @@ public class Camera {
 		// DWheel functionality
 		if(DWheelCurrentValue > 0) {
 			if(DWheelCurrentValue == 120) {
-				position.z-=0.1f;
+				position.z-=3f;
 			} else if(DWheelCurrentValue == 240) {
-				position.z-=0.2f;
+				position.z-=6f;
 			} else if(DWheelCurrentValue == 360) {
-				position.z-=0.3f;
+				position.z-=9f;
 			}
 		}
 		if(DWheelCurrentValue < 0) {
 			if(DWheelCurrentValue == -120) {
-				position.z+=0.1f;
+				position.z+=3f;
 			} else if(DWheelCurrentValue == -240) {
-				position.z+=0.2f;
+				position.z+=6f;
 			} else if(DWheelCurrentValue == -360) {
-				position.z+=0.3f;
+				position.z+=9f;
 			}
 		}
 		
@@ -72,7 +72,7 @@ public class Camera {
 			yaw+=1f;
 		}
 		if(DXMouseCurrentValue != 0) {
-			yaw+=DXMouseCurrentValue * MOUSE_SENSIBILITY * FAKE_DELTA_TIME;
+			yaw-=DXMouseCurrentValue * MOUSE_SENSIBILITY * FAKE_DELTA_TIME;
 		}
 		if(DYMouseCurrentValue != 0) {
 			pitch-=DYMouseCurrentValue * MOUSE_SENSIBILITY * FAKE_DELTA_TIME;

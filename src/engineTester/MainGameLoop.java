@@ -1,5 +1,7 @@
 package engineTester;
 
+import java.util.ArrayList;
+
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -14,6 +16,7 @@ import renderEngine.Loader;
 import renderEngine.Renderer;
 import shaders.StaticShader;
 import textures.ModelTexture;
+import toolbox.Maths;
 
 public class MainGameLoop {
 
@@ -25,107 +28,31 @@ public class MainGameLoop {
 		StaticShader shader = new StaticShader();
 		Renderer renderer = new Renderer(shader);
 		
-		float[] vertices = {			
-				-0.5f,0.5f,-0.5f,	
-				-0.5f,-0.5f,-0.5f,	
-				0.5f,-0.5f,-0.5f,	
-				0.5f,0.5f,-0.5f,		
-				
-				-0.5f,0.5f,0.5f,	
-				-0.5f,-0.5f,0.5f,	
-				0.5f,-0.5f,0.5f,	
-				0.5f,0.5f,0.5f,
-				
-				0.5f,0.5f,-0.5f,	
-				0.5f,-0.5f,-0.5f,	
-				0.5f,-0.5f,0.5f,	
-				0.5f,0.5f,0.5f,
-				
-				-0.5f,0.5f,-0.5f,	
-				-0.5f,-0.5f,-0.5f,	
-				-0.5f,-0.5f,0.5f,	
-				-0.5f,0.5f,0.5f,
-				
-				-0.5f,0.5f,0.5f,
-				-0.5f,0.5f,-0.5f,
-				0.5f,0.5f,-0.5f,
-				0.5f,0.5f,0.5f,
-				
-				-0.5f,-0.5f,0.5f,
-				-0.5f,-0.5f,-0.5f,
-				0.5f,-0.5f,-0.5f,
-				0.5f,-0.5f,0.5f
-				
-		};
-		
-		float[] textureCoords = {
-				
-				0,0,
-				0,1,
-				1,1,
-				1,0,			
-				0,0,
-				0,1,
-				1,1,
-				1,0,			
-				0,0,
-				0,1,
-				1,1,
-				1,0,
-				0,0,
-				0,1,
-				1,1,
-				1,0,
-				0,0,
-				0,1,
-				1,1,
-				1,0,
-				0,0,
-				0,1,
-				1,1,
-				1,0
-
-				
-		};
-		
-		int[] indices = {
-				0,1,3,	
-				3,1,2,	
-				4,5,7,
-				7,5,6,
-				8,9,11,
-				11,9,10,
-				12,13,15,
-				15,13,14,	
-				16,17,19,
-				19,17,18,
-				20,21,23,
-				23,21,22
-
-		};
-		
-		
-		RawModel exampleModel = loader.loadToVAO(vertices, textureCoords, indices);
-		ModelTexture texture = new ModelTexture(loader.loadTexture("face"));
-		TexturedModel texturedModel = new TexturedModel(exampleModel, texture);
-		
-		/*ModelData dragon = OBJFileLoader.loadOBJ("dragon");
+		ModelData dragon = OBJFileLoader.loadOBJ("yasuo");
 		RawModel dragonModel = loader.loadToVAO(dragon.getVertices(), dragon.getTextureCoords(), dragon.getIndices());
-		ModelTexture texture = new ModelTexture(loader.loadTexture("face"));
-		TexturedModel texturedModel = new TexturedModel(dragonModel, texture);*/
+		ModelTexture texture = new ModelTexture(loader.loadTexture("yasuo"));
+		TexturedModel texturedModel = new TexturedModel(dragonModel, texture);
 		
-		Entity entity = new Entity(texturedModel, new Vector3f(0, 0, -2.5f), 0, 0, 0, 1);
+		ArrayList<Entity> entityList = new ArrayList<Entity>();
+		for(int i = 0; i < 200; i++) {
+			entityList.add(new Entity(texturedModel, new Vector3f((float) Maths.randFloat(-30f, 30f),
+																  (float) Maths.randFloat(-30f, 30f),
+																  (float) Maths.randFloat(-100f, -70f)), 
+					(float) Maths.randFloat(-20f, 20f), (float) Maths.randFloat(-20f, 20f), (float) Maths.randFloat(-5f, 5f), 0.05f));
+		}
 		
 		Camera camera = new Camera();
 		
 		while(!Display.isCloseRequested()) {
-			entity.rotateEntity(0.25f, 0.25f, 0.0f);
 			// entity.moveEntity(0.0f, 0.0f, -0.01f);
 			camera.move();
 			renderer.prepare();
 			shader.start();
 			shader.loadViewMatrix(camera);
-			renderer.render(entity, shader);
+			for(Entity entity : entityList) {
+				entity.rotateEntity((float) Maths.randFloat(0, 10f), (float) Maths.randFloat(0, 10f), (float) Maths.randFloat(0, 10f));
+				renderer.render(entity, shader);
+			}
 			shader.stop();
 			
 			DisplayManager.updateDisplay();
