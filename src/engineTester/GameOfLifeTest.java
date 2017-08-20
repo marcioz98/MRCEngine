@@ -33,9 +33,9 @@ public class GameOfLifeTest {
 		
 		Loader loader = new Loader();
 		
-		ModelData sample = OBJFileLoader.loadOBJ("cat");
+		ModelData sample = OBJFileLoader.loadOBJ("cube");
 		RawModel sampleModel = loader.loadToVAO(sample.getVertices(), sample.getTextureCoords(), sample.getNormals(), sample.getIndices());
-		ModelTexture texture = new ModelTexture(loader.loadTexture("cat"));
+		ModelTexture texture = new ModelTexture(loader.loadTexture("green"));
 		texture.setShineDamper(25);
 		texture.setReflectivity(0.8f);
 		TexturedModel texturedModel = new TexturedModel(sampleModel, texture);
@@ -91,7 +91,7 @@ public class GameOfLifeTest {
 			}
 			
 			for(Entity entity : entities) {
-				entity.rotateEntity(0, Maths.randFloat(2f, 5f), 0);
+				entity.rotateEntity(0, Maths.randFloat(0.0002f, 0.0005f), 0);
 				renderer.processEntity(entity);
 			}
 			

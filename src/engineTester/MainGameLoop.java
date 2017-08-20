@@ -18,6 +18,8 @@ import renderEngine.Loader;
 import renderEngine.MasterRenderer;
 import terrains.Terrain;
 import textures.ModelTexture;
+import textures.TerrainTexture;
+import textures.TerrainTexturePack;
 import toolbox.Maths;
 
 public class MainGameLoop {
@@ -28,7 +30,7 @@ public class MainGameLoop {
 		
 		Loader loader = new Loader();
 		
-		ModelData sample = OBJFileLoader.loadOBJ("triforce");
+		ModelData sample = OBJFileLoader.loadOBJ("player");
 		RawModel sampleModel = loader.loadToVAO(sample.getVertices(), sample.getTextureCoords(), sample.getNormals(), sample.getIndices());
 		ModelTexture texture = new ModelTexture(loader.loadTexture("yellow"));
 		texture.setShineDamper(25);
@@ -46,27 +48,28 @@ public class MainGameLoop {
 		}
 		*/
 		
-		entities.add(new Entity(texturedModel, new Vector3f(150, 0, 150), 0, Maths.randFloat(0.0f, 360.0f), 0, 2.5f));
+		entities.add(new Entity(texturedModel, new Vector3f(150, 0, 150), 0, Maths.randFloat(0.0f, 360.0f), 0, 25f));
 		
-		Light light = new Light(new Vector3f(200, 100, 200), new Vector3f(1f, 1f, 1f)); // x, intensity, "y"
+		Light light = new Light(new Vector3f(0, 100000, 0), new Vector3f(1f, 1f, 1f)); // x, intensity, "y"
 		
 		Camera camera = new Camera();
+		camera.setPosition(new Vector3f(2f, 2f, 2f));
 		
-		List<Terrain> terrains = new ArrayList<Terrain>();
+		TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("default_background"));
+		TerrainTexture rTexture = new TerrainTexture(loader.loadTexture("rock"));
+		TerrainTexture gTexture = new TerrainTexture(loader.loadTexture("green"));
+		TerrainTexture bTexture = new TerrainTexture(loader.loadTexture("water"));
 		
-		ModelTexture terrainTexture = new ModelTexture(loader.loadTexture("terrain"));
+		TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
+		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blend_map"));
 		
-		for(int i = 0; i < 1; i++) {
-			for(int j = 0; j < 1; j++) {
-				terrains.add(new Terrain(i, j, loader, terrainTexture));
-			}
-		}
-		
-		
+		ArrayList<Terrain> terrains = new ArrayList<Terrain>();
+		terrains.add(new Terrain(0, 0, loader, texturePack, blendMap));
+				
 		MasterRenderer renderer = new MasterRenderer();
 		while(!Display.isCloseRequested()) {
 			
-			camera.move();
+			camera.move();			
 			
 			for(Terrain terrain : terrains) {
 				renderer.processTerrain(terrain);

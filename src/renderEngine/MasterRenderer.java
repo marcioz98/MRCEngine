@@ -19,7 +19,7 @@ import terrains.Terrain;
 
 public class MasterRenderer {
 	
-	private static final float FOV = 90;
+	private static final float FOV = 70;
 	private static final float NEAR_PLANE = 0.1f;
 	private static final float FAR_PLANE = 10000; // 20000 for GameOfLifeTest
 	
