@@ -11,7 +11,7 @@ public class Camera {
 	private static final float MOUSE_SENSIBILITY = 3f;
 	private static final float FAKE_DELTA_TIME = (float) DisplayManager.getFps() / 1000;
 	
-	private Vector3f position = new Vector3f(0, 0, 0);
+	private Vector3f position = new Vector3f(300, 50, 300);
 	private float pitch;    // rotation over x
 	private float yaw;      // rotation over y
 	private float roll;     // rotation over z
@@ -19,7 +19,38 @@ public class Camera {
 	public Camera() {}
 	
 	public void move() {
-
+		if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
+			position.x += 1f;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_A)) {
+			position.x -= 1f;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_S)) {
+			position.z += 1f;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_W)) {
+			position.z -= 1f;
+		}
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+			position.y += 1f;
+		}if(Keyboard.isKeyDown(Keyboard.KEY_Z)) {
+			position.y -= 1f;
+		}
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
+			yaw += 1f;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
+			yaw -= 1f;
+		}
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
+			pitch += 1f;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+			pitch -= 1f;
+		}
 	}
 
 	public Vector3f getPosition() {

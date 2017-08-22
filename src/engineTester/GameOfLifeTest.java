@@ -19,6 +19,8 @@ import renderEngine.Loader;
 import renderEngine.MasterRenderer;
 import terrains.Terrain;
 import textures.ModelTexture;
+import textures.TerrainTexture;
+import textures.TerrainTexturePack;
 import toolbox.Maths;
 
 public class GameOfLifeTest {
@@ -66,14 +68,21 @@ public class GameOfLifeTest {
 		
 		List<Terrain> terrains = new ArrayList<Terrain>();
 		
-		ModelTexture terrainTexture = new ModelTexture(loader.loadTexture("black"));
+		TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("face"));
+		TerrainTexture rTexture = new TerrainTexture(loader.loadTexture("rock"));
+		TerrainTexture gTexture = new TerrainTexture(loader.loadTexture("green"));
+		TerrainTexture bTexture = new TerrainTexture(loader.loadTexture("water"));
 		
-		for(int i = 0; i < 10; i++) {
-			for(int j = 0; j < 6; j++) {
-				terrains.add(new Terrain(i, j, loader, terrainTexture));
+		TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
+		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blend_map"));
+		
+		for(int i = 0; i < 4; i++) {
+			for(int j = 0; j < 4; j++) {
+				terrains.add(new Terrain(i, j, loader, texturePack, blendMap));
 			}
 		}
 		
+		ModelTexture terrainTexture = new ModelTexture(loader.loadTexture("black"));		
 		
 		ArrayList<Entity> tempEntities = new ArrayList<Entity>();
 		
