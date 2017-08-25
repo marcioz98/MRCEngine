@@ -90,13 +90,19 @@ public class GameOfLifeTest {
 		
 		MasterRenderer renderer = new MasterRenderer();
 		
+		
+		int c = 0;
 		while(!Display.isCloseRequested()) {
 			
 			camera.move();
-			shuffleMatrix(matrix);
-			matrix = parseMatrix(matrix);
-			entities = updateRender(matrix, entities, texturedModel);
 			
+			c++;
+			if(c >= DisplayManager.getFps() / 12) {
+				c = 0;
+				shuffleMatrix(matrix);
+				matrix = parseMatrix(matrix);
+				entities = updateRender(matrix, entities, texturedModel);
+			}
 			
 			/*for(Terrain terrain : terrains) {
 				renderer.processTerrain(terrain);
