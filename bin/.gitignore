@@ -1,4 +1,9 @@
 /engineTester/
 /entities/
-/shaders/
+/models/
+/objConverter/
 /renderEngine/
+/terrains/
+/textures/
+/toolbox/
+/shaders/

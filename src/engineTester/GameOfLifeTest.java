@@ -25,8 +25,8 @@ import toolbox.Maths;
 
 public class GameOfLifeTest {
 	
-	private static final int BOARD_WIDTH = 512;
-	private static final int BOARD_HEIGHT = 512;
+	private static final int BOARD_WIDTH = 384;
+	private static final int BOARD_HEIGHT = 384;
 
 	public static void main(String[] args) {
 		
@@ -37,7 +37,7 @@ public class GameOfLifeTest {
 		
 		ModelData sample = OBJFileLoader.loadOBJ("cube");
 		RawModel sampleModel = loader.loadToVAO(sample.getVertices(), sample.getTextureCoords(), sample.getNormals(), sample.getIndices());
-		ModelTexture texture = new ModelTexture(loader.loadTexture("green"));
+		ModelTexture texture = new ModelTexture(loader.loadTexture("face"));
 		texture.setShineDamper(25);
 		texture.setReflectivity(0.8f);
 		TexturedModel texturedModel = new TexturedModel(sampleModel, texture);
@@ -52,7 +52,7 @@ public class GameOfLifeTest {
 		for(int i = 1; i < BOARD_WIDTH; i++) {
 			for(int j = 1; j < BOARD_HEIGHT; j++) {
 				if((int) (Math.random() * 2) > 0.2) {
-					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, Maths.randFloat(0.0f, 360.0f), 0, 2.5f));
+					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, 0, 0, 4));
 					matrix[i][j] = 1;
 				} else {
 					matrix[i][j] = 0;
@@ -62,10 +62,11 @@ public class GameOfLifeTest {
 		
 		// entities.add(new Entity(texturedModel, new Vector3f(1500, 150, 1500), 0, Maths.randFloat(0.0f, 360.0f), 0, 250));
 		
-		Light light = new Light(new Vector3f(500, 200, 300), new Vector3f(1f, 1f, 1f)); // x, intensity, "y"
+		Light light = new Light(new Vector3f(1536, 5000, 1536), new Vector3f(1f, 1f, 1f)); // x, intensity, "y"
 		
 		Camera camera = new Camera();
 		
+		/*
 		List<Terrain> terrains = new ArrayList<Terrain>();
 		
 		TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("face"));
@@ -82,22 +83,24 @@ public class GameOfLifeTest {
 			}
 		}
 		
-		ModelTexture terrainTexture = new ModelTexture(loader.loadTexture("black"));		
+		ModelTexture terrainTexture = new ModelTexture(loader.loadTexture("black"));
+		*/
 		
 		ArrayList<Entity> tempEntities = new ArrayList<Entity>();
 		
 		MasterRenderer renderer = new MasterRenderer();
+		
 		while(!Display.isCloseRequested()) {
 			
 			camera.move();
-			
 			shuffleMatrix(matrix);
 			matrix = parseMatrix(matrix);
 			entities = updateRender(matrix, entities, texturedModel);
 			
-			for(Terrain terrain : terrains) {
+			
+			/*for(Terrain terrain : terrains) {
 				renderer.processTerrain(terrain);
-			}
+			}*/
 			
 			for(Entity entity : entities) {
 				entity.rotateEntity(0, Maths.randFloat(0.0002f, 0.0005f), 0);
@@ -189,7 +192,7 @@ public class GameOfLifeTest {
 		for(int i = 1; i < BOARD_WIDTH; i++) {
 			for(int j = 1; j < BOARD_HEIGHT; j++) {
 				if(matrix[i][j] == 1) {
-					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, Maths.randFloat(0.0f, 360.0f), 0, 2.5f));
+					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, 0, 0, 4));
 				}
 			}
 		}

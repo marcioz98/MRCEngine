@@ -23,9 +23,9 @@ public class MasterRenderer {
 	private static final float NEAR_PLANE = 0.1f;
 	private static final float FAR_PLANE = 10000; // 20000 for GameOfLifeTest
 	
-	private static final float SKY_RED = 0.3f;
-	private static final float SKY_GREEN = 0.3f;
-	private static final float SKY_BLUE = 0.3f;
+	private static final float SKY_RED = 0.1f;
+	private static final float SKY_GREEN = 0.1f;
+	private static final float SKY_BLUE = 0.1f;
 
 	private StaticShader shader = new StaticShader();
 	private EntityRenderer renderer;
