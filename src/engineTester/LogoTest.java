@@ -10,6 +10,7 @@ import org.lwjgl.util.vector.Vector3f;
 import entities.Camera;
 import entities.Entity;
 import entities.Light;
+import entities.Player;
 import models.RawModel;
 import models.TexturedModel;
 import objConverter.ModelData;
@@ -34,12 +35,13 @@ public class LogoTest {
 		
 		ModelData sample = OBJFileLoader.loadOBJ("cube");
 		RawModel sampleModel = loader.loadToVAO(sample.getVertices(), sample.getTextureCoords(), sample.getNormals(), sample.getIndices());
-		ModelTexture texture = new ModelTexture(loader.loadTexture("face"));
+		ModelTexture texture = new ModelTexture(loader.loadTexture("transparence_test"));
 		texture.setShineDamper(25);
 		texture.setReflectivity(0.8f);
 		TexturedModel texturedModel = new TexturedModel(sampleModel, texture);
+		texturedModel.getTexture().setHasTransparency(true);
 		
-		Entity turtle = new Entity(texturedModel, new Vector3f(0, 0, 0), 0, 0, 0, 1);
+		Player turtle = new Player(texturedModel, new Vector3f(0, 0, 0), 0, 0, 0, 1);
 		
 		Light light = new Light(new Vector3f(1536, 5000, 1536), new Vector3f(1f, 1f, 1f)); // x, intensity, "y"
 		
@@ -64,7 +66,7 @@ public class LogoTest {
 			
 			camera.move();
 			
-			moveTurtle(turtle);
+			turtle.move();
 			
 			renderer.processTerrain(terrain);
 			
@@ -79,22 +81,6 @@ public class LogoTest {
 		loader.cleanUp();
 		DisplayManager.closeDisplay();
 
-	}
-	
-	private static void moveTurtle(Entity entity) {
-		if(Keyboard.isKeyDown(Keyboard.KEY_I)) {
-			entity.getPosition().z -= 1f;
-		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_K)) {
-			entity.getPosition().z += 1f;
-		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_J)) {
-			entity.getPosition().x -= 1f;
-		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_L)) {
-			entity.getPosition().x += 1f;
-		}
-		
 	}
 	
 	private static void loadFromFile(String filename) {
