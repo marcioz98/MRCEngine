@@ -11,7 +11,7 @@ public class Camera {
 	private static final float MOUSE_SENSIBILITY = 3f;
 	private static final float FAKE_DELTA_TIME = (float) DisplayManager.getFps() / 1000;
 	
-	private Vector3f position = new Vector3f(0, 0, 0);
+	private Vector3f position = new Vector3f(100, 100, 0);
 	private float pitch;    // rotation over x
 	private float yaw;      // rotation over y
 	private float roll;     // rotation over z

@@ -30,12 +30,15 @@ public class MainGameLoop {
 		
 		Loader loader = new Loader();
 		
-		ModelData sample = OBJFileLoader.loadOBJ("player");
+		ModelData sample = OBJFileLoader.loadOBJ("cube");
 		RawModel sampleModel = loader.loadToVAO(sample.getVertices(), sample.getTextureCoords(), sample.getNormals(), sample.getIndices());
-		ModelTexture texture = new ModelTexture(loader.loadTexture("yellow"));
+		ModelTexture texture = new ModelTexture(loader.loadTexture("face"));
 		texture.setShineDamper(25);
 		texture.setReflectivity(0.8f);
 		TexturedModel texturedModel = new TexturedModel(sampleModel, texture);
+		
+		texturedModel.getTexture().setHasTransparency(true);
+		texturedModel.getTexture().setUseFakeLighting(true);
 		
 		ArrayList<Entity> entities = new ArrayList<Entity>();
 		
@@ -46,7 +49,7 @@ public class MainGameLoop {
 					entities.add(new Entity(texturedModel, new Vector3f(i*distance, 0, j*distance), 0, Maths.randFloat(0.0f, 360.0f), 0, 2.5f));
 			}
 		}
-		*/
+		*/ 
 		
 		entities.add(new Entity(texturedModel, new Vector3f(150, 0, 150), 0, Maths.randFloat(0.0f, 360.0f), 0, 25f));
 		
