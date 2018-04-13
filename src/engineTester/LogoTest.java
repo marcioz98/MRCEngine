@@ -73,6 +73,9 @@ public class LogoTest {
 			renderer.processEntity(turtle);
 			
 			renderer.render(light, camera);
+			DisplayManager.setDisplayTitle(
+					"MRCEngine - LOGO 1.0 - FPS: " + String.valueOf(DisplayManager.getFps())
+			);
 			DisplayManager.updateDisplay();
 
 		}

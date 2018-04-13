@@ -10,8 +10,8 @@ import org.lwjgl.opengl.PixelFormat;
 
 public class DisplayManager {
 	
-	public static final int WIDTH = 1920;
-	public static final int HEIGHT = 1080;
+	public static final int WIDTH = 800;
+	public static final int HEIGHT = 600;
 	public static final int FPS = 120;
 	
 	private static long lastFrameTime;
@@ -34,6 +34,10 @@ public class DisplayManager {
 		GL11.glViewport(0, 0, WIDTH, HEIGHT);
 		lastFrameTime = getCurrentTime();
 		
+	}
+	
+	public static void setDisplayTitle(String newTitle) {
+		Display.setTitle(newTitle);
 	}
 	
 	public static void updateDisplay() {
