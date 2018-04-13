@@ -33,15 +33,15 @@ public class LogoTest {
 		
 		Loader loader = new Loader();
 		
-		ModelData sample = OBJFileLoader.loadOBJ("cube");
+		ModelData sample = OBJFileLoader.loadOBJ("cat");
 		RawModel sampleModel = loader.loadToVAO(sample.getVertices(), sample.getTextureCoords(), sample.getNormals(), sample.getIndices());
-		ModelTexture texture = new ModelTexture(loader.loadTexture("transparence_test"));
-		texture.setShineDamper(25);
-		texture.setReflectivity(0.8f);
+		ModelTexture texture = new ModelTexture(loader.loadTexture("cat"));
+		texture.setShineDamper(35);
+		texture.setReflectivity(0.5f);
 		TexturedModel texturedModel = new TexturedModel(sampleModel, texture);
 		texturedModel.getTexture().setHasTransparency(true);
 		
-		Player turtle = new Player(texturedModel, new Vector3f(0, 0, 0), 0, 0, 0, 1);
+		Player turtle = new Player(texturedModel, new Vector3f(25, 0, 25), 0, 0, 0, 50);
 		
 		Light light = new Light(new Vector3f(1536, 5000, 1536), new Vector3f(1f, 1f, 1f)); // x, intensity, "y"
 		

@@ -29,17 +29,17 @@ public class Player extends Entity {
 	
 	public void checkInputs() {
 		if(Keyboard.isKeyDown(Keyboard.KEY_I)) {
-			this.currentSpeed = RUN_SPEED;
+			this.currentSpeed = RUN_SPEED * (float) (getScale() / 4.0);
 		} else if(Keyboard.isKeyDown(Keyboard.KEY_K)) {
-			this.currentSpeed = -RUN_SPEED;
+			this.currentSpeed = -RUN_SPEED * (float) (getScale() / 4.0);
 		} else {
 			this.currentSpeed = 0;
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_L)) {
-			this.currentTurnSpeed = TURN_SPEED;
-		} else if(Keyboard.isKeyDown(Keyboard.KEY_J)) {
 			this.currentTurnSpeed = -TURN_SPEED;
+		} else if(Keyboard.isKeyDown(Keyboard.KEY_J)) {
+			this.currentTurnSpeed = TURN_SPEED;
 		} else {
 			this.currentTurnSpeed = 0;
 		}
