@@ -18,6 +18,15 @@ public class Camera {
 	
 	public Camera() {}
 	
+	public Camera(float x, float y, float z, float pitch, float yaw, float roll) {
+		this.position.setX(x);
+		this.position.setY(y);
+		this.position.setZ(z);
+		this.pitch = pitch;
+		this.yaw = yaw;
+		this.roll = roll;
+	}
+	
 	public void move() {
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)) {
 			position.x += 1f;
@@ -51,6 +60,13 @@ public class Camera {
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
 			pitch -= 1f;
 		}
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_Q)) {
+			roll -= 1f;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_E)) {
+			roll += 1f;
+		}
 	}
 
 	public Vector3f getPosition() {
@@ -83,6 +99,17 @@ public class Camera {
 
 	public void setRoll(float roll) {
 		this.roll = roll;
+	}
+	
+	public String getCameraCurrentState() {
+		Vector3f currPos = getPosition();
+		return "(" +
+			   String.valueOf(currPos.x) + ", " +
+			   String.valueOf(currPos.y) + ", " +
+			   String.valueOf(currPos.z) + "), (" +
+			   String.valueOf(getPitch()) + ", " +
+			   String.valueOf(getYaw()) + ", " +
+			   String.valueOf(getRoll()) + ")";
 	}
 	
 }

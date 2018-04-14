@@ -19,13 +19,13 @@ import terrains.Terrain;
 
 public class MasterRenderer {
 	
-	private static final float FOV = 70;
+	private static final float FOV = 80;
 	private static final float NEAR_PLANE = 0.1f;
-	private static final float FAR_PLANE = 10000; // 20000 for GameOfLifeTest
+	private static final float FAR_PLANE = 1000; // 20000 for GameOfLifeTest
 	
-	private static final float SKY_RED = 0.1f;
-	private static final float SKY_GREEN = 0.1f;
-	private static final float SKY_BLUE = 0.1f;
+	private static final float SKY_RED = 0.07f;
+	private static final float SKY_GREEN = 0.07f;
+	private static final float SKY_BLUE = 0.07f;
 
 	private StaticShader shader = new StaticShader();
 	private EntityRenderer renderer;

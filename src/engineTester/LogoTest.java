@@ -45,19 +45,19 @@ public class LogoTest {
 		
 		Light light = new Light(new Vector3f(1536, 5000, 1536), new Vector3f(1f, 1f, 1f)); // x, intensity, "y"
 		
-		Camera camera = new Camera();
+		Camera camera = new Camera(86, 199, 171, 34, -24, 0);
 		
-		TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("face"));
-		TerrainTexture rTexture = new TerrainTexture(loader.loadTexture("rock"));
-		TerrainTexture gTexture = new TerrainTexture(loader.loadTexture("green"));
-		TerrainTexture bTexture = new TerrainTexture(loader.loadTexture("water"));
+		//TerrainTexture backgroundTexture = new TerrainTexture(loader.loadTexture("face"));
+		//TerrainTexture rTexture = new TerrainTexture(loader.loadTexture("rock"));
+		//TerrainTexture gTexture = new TerrainTexture(loader.loadTexture("green"));
+		//TerrainTexture bTexture = new TerrainTexture(loader.loadTexture("water"));
 		
-		TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
-		TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blend_map"));
+		//TerrainTexturePack texturePack = new TerrainTexturePack(backgroundTexture, rTexture, gTexture, bTexture);
+		//TerrainTexture blendMap = new TerrainTexture(loader.loadTexture("blend_map"));
 		
-		ModelTexture terrainTexture = new ModelTexture(loader.loadTexture("black"));
+		//ModelTexture terrainTexture = new ModelTexture(loader.loadTexture("black"));
 		
-		Terrain terrain = new Terrain(0, 0, loader, texturePack, blendMap);
+		//Terrain terrain = new Terrain(0, 0, loader, texturePack, blendMap);
 		
 		MasterRenderer renderer = new MasterRenderer();
 
@@ -65,16 +65,18 @@ public class LogoTest {
 		while(!Display.isCloseRequested()) {
 			
 			camera.move();
-			
+
+			turtle.rotateEntity(0, 0.5f, 0);
 			turtle.move();
 			
-			renderer.processTerrain(terrain);
+			//renderer.processTerrain(terrain);
 			
 			renderer.processEntity(turtle);
 			
 			renderer.render(light, camera);
 			DisplayManager.setDisplayTitle(
 					"MRCEngine - LOGO 1.0 - FPS: " + String.valueOf(DisplayManager.getFps())
+					+ " - CameraCoords: " + camera.getCameraCurrentState()
 			);
 			DisplayManager.updateDisplay();
 
